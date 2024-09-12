@@ -53,7 +53,7 @@
 <body class="antialiased">
 	<div class="container">
 		<div class="error-code">404</div>
-		<p class="message"><?php _e( 'Sorry, the page you are looking for could not be found.'); ?></p>
+		<p class="message"><?php _e( 'Sorry, the page you are looking for could not be found.', 'minimalflow' ); ?></p>
 	</div>
 </body>
 </html>
