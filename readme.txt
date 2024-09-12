@@ -20,4 +20,4 @@ Features:
 
 == GitHub Repository ==
 
-For more information and to contribute, visit the [GitHub repository](https://github.com/01one/flow-wp-theme).
+For more information and to contribute, visit the [GitHub repository](https://github.com/01one/MinimalFlow-wp-theme).
