@@ -3,7 +3,6 @@
         <div class="ui stackable divided equal height stackable grid">
             <!-- Company Info -->
             <div class="eight wide column">
-                <h4 class="ui inverted header">About Us</h4>
                 <p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. All rights reserved.</p>
             </div>
 

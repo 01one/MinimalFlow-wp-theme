@@ -1,5 +1,8 @@
 <?php get_header(); ?>
 
+<body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
+
 <div class="ui container">
     <?php if ( have_posts() ) : ?>
         <?php while ( have_posts() ) : the_post(); ?>
@@ -9,13 +12,21 @@
                         <?php the_title(); ?>
                         <div class="sub header">
                             <i class="calendar alternate outline icon"></i>
-                            <time datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date(); ?></time>
+                            <time datetime="<?php echo esc_attr(get_the_date('c')); ?>"><?php echo esc_html(get_the_date()); ?></time>
                         </div>
                     </h1>
                 </header>
 
                 <div class="entry-content">
-                    <?php the_content(); ?>
+                    <?php
+                    // Display content
+                    the_content();
+                    
+                    wp_link_pages(array(
+                        'before' => '<div class="page-links">' . __('Pages:', 'mytheme'),
+                        'after'  => '</div>',
+                    ));
+                    ?>
                 </div>
 
                 <footer class="entry-footer ui divider" style="margin-top: 3em;">
@@ -36,7 +47,7 @@
             <?php
             $current_post_id = get_the_ID();
             $current_post_category = get_the_category($current_post_id);
-            $current_post_category_id = $current_post_category[0]->term_id;
+            $current_post_category_id = isset($current_post_category[0]) ? $current_post_category[0]->term_id : 0;
 
             $related_posts_args = [
                 'post_type' => 'post',
@@ -54,9 +65,9 @@
                         <?php while ($related_posts_query->have_posts()) : $related_posts_query->the_post(); ?>
                             <div class="item">
                                 <div class="content">
-                                    <a class="header" href="<?php the_permalink(); ?>" style="font-size: 1.2rem;"><?php the_title(); ?></a>
+                                    <a class="header" href="<?php echo esc_url(get_permalink()); ?>" style="font-size: 1.2rem;"><?php the_title(); ?></a>
                                     <div class="meta">
-                                        <span><i class="calendar outline icon"></i> <?php echo get_the_date(); ?></span>
+                                        <span><i class="calendar outline icon"></i> <?php echo esc_html(get_the_date()); ?></span>
                                     </div>
                                     <div class="description">
                                         <?php the_excerpt(); ?>

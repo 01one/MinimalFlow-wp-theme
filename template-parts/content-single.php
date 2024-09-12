@@ -1,14 +1,19 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class('post-article ui segment'); ?> style="margin-bottom: 2rem; padding: 1.5rem;">
     <header class="entry-header ui header" style="margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid #e5e5e5;">
-        <?php the_title(sprintf('<h1 class="entry-title" style="font-size: 2.5rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.5rem; color: #333;"><a href="%s" style="color: #6aff40; text-decoration: none;" rel="bookmark">', esc_url(get_permalink())), '</a></h1>'); ?>
-        <time datetime="<?php echo get_the_date('c'); ?>" itemprop="datePublished" class="date" style="font-size: 0.875rem; color: #888;"><?php echo get_the_date(); ?></time>
+        <?php 
+        the_title(sprintf(
+            '<h1 class="entry-title" style="font-size: 2.5rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.5rem; color: #333;"><a href="%s" style="color: #6aff40; text-decoration: none;" rel="bookmark">',
+            esc_url(get_permalink())
+        ), '</a></h1>'); 
+        ?>
+        <time datetime="<?php echo esc_attr(get_the_date('c')); ?>" itemprop="datePublished" class="date" style="font-size: 0.875rem; color: #888;"><?php echo esc_html(get_the_date()); ?></time>
     </header>
 
     <div class="entry-content" style="font-size: 1.125rem; line-height: 1.8; color: #555;">
         <?php the_content(); ?>
     </div>
 
-    <!-- Display category list -->
+
     <div class="entry-categories ui segment" style="margin-top: 2rem; padding-top: 1rem;">
         <?php
         $categories = get_the_category();
@@ -22,11 +27,11 @@
         ?>
     </div>
 
-    <!-- Display related posts -->
+
     <?php
     $current_post_id = get_the_ID();
     $current_post_category = get_the_category($current_post_id);
-    $current_post_category_id = $current_post_category[0]->term_id;
+    $current_post_category_id = isset($current_post_category[0]) ? $current_post_category[0]->term_id : 0;
 
     $related_posts_args = [
         'post_type' => 'post',
@@ -44,7 +49,7 @@
             <div class="ui relaxed list">
                 <?php while ($related_posts_query->have_posts()) : $related_posts_query->the_post(); ?>
                     <div class="item">
-                        <a href="<?php the_permalink(); ?>" class="header" style="font-size: 1.125rem; color: #3b5998;"><?php the_title(); ?></a>
+                        <a href="<?php echo esc_url(get_permalink()); ?>" class="header" style="font-size: 1.125rem; color: #3b5998;"><?php the_title(); ?></a>
                     </div>
                 <?php endwhile; ?>
             </div>

@@ -1,10 +1,13 @@
 <?php get_header(); ?>
 
+<body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
+
 <div class="ui container" style="margin-top: 3em; margin-bottom: 3em;">
 
     <!-- Hero Section -->
     <?php
-    // Get the custom hero image, title, and description
+
     $hero_image = get_theme_mod('hero_background_image');
     $hero_title = get_theme_mod('hero_title');
     $hero_description = get_theme_mod('hero_description');
@@ -30,7 +33,7 @@
         </div>
     <?php endif; ?>
 
-    <!-- Blog Title and Description Section -->
+
     <?php if (!$hero_image && ($hero_title || $hero_description)) : ?>
         <div class="ui vertical segment">
             <div class="ui container">
@@ -48,7 +51,7 @@
         </div>
     <?php endif; ?>
 
-    <!-- Categories Section -->
+
     <div class="ui vertical segment">
         <div class="ui container">
             <div class="ui stackable three column grid">
@@ -58,7 +61,7 @@
                     echo '
                     <div class="column">
                         <div class="ui segment">
-                            <a href="' . get_category_link($category->term_id) . '" class="ui fluid primary button">
+                            <a href="' . esc_url(get_category_link($category->term_id)) . '" class="ui fluid primary button">
                                 ' . esc_html($category->name) . '
                             </a>
                         </div>
@@ -69,7 +72,7 @@
         </div>
     </div>
 
-    <!-- Pages Section -->
+
     <div class="ui vertical segment">
         <div class="ui container">
             <h2 class="ui header">Explore Pages</h2>
@@ -80,7 +83,7 @@
                     echo '
                     <div class="column">
                         <div class="ui segment">
-                            <a href="' . get_page_link($page->ID) . '" class="ui fluid secondary button">
+                            <a href="' . esc_url(get_page_link($page->ID)) . '" class="ui fluid secondary button">
                                 <i class="icon file alternate"></i> ' . esc_html($page->post_title) . '
                             </a>
                         </div>

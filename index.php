@@ -2,7 +2,10 @@
 get_header();
 
 function enqueue_custom_styles_and_scripts() {
-    // Add your custom styles and scripts
+    // Enqueue your custom styles and scripts here
+    // Example:
+    // wp_enqueue_style('custom-style', get_template_directory_uri() . '/css/custom-style.css');
+    // wp_enqueue_script('custom-script', get_template_directory_uri() . '/js/custom-script.js', array('jquery'), null, true);
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_styles_and_scripts');
 ?>
@@ -15,7 +18,7 @@ add_action('wp_enqueue_scripts', 'enqueue_custom_styles_and_scripts');
         <article id="post-<?php the_ID(); ?>" <?php post_class('ui segment'); ?> style="margin-bottom: 2rem;">
             <header class="entry-header ui header" style="margin-bottom: 1.5rem;">
                 <?php the_title( sprintf( '<h1 class="entry-title" style="font-size: 2.5rem; color: #333;"><a href="%s" rel="bookmark" style="color: #6aff40; text-decoration: none;">', esc_url( get_permalink() ) ), '</a></h1>' ); ?>
-                <time datetime="<?php echo get_the_date( 'c' ); ?>" itemprop="datePublished" class="date" style="font-size: 0.875rem; color: #888;"><?php echo get_the_date(); ?></time>
+                <time datetime="<?php echo esc_attr(get_the_date('c')); ?>" itemprop="datePublished" class="date" style="font-size: 0.875rem; color: #888;"><?php echo esc_html(get_the_date()); ?></time>
             </header>
             <div class="entry-content">
                 <?php the_content(); ?>
@@ -27,8 +30,8 @@ add_action('wp_enqueue_scripts', 'enqueue_custom_styles_and_scripts');
         $term = get_queried_object();
     ?>
         <div class="term-info ui segment" style="margin-bottom: 3rem;">
-            <h1 class="ui header" style="font-size: 3rem;"><?php echo $term->name; ?></h1>
-            <div class="term-description" style="margin-bottom: 1.5rem;"><?php echo $term->description; ?></div>
+            <h1 class="ui header" style="font-size: 3rem;"><?php echo esc_html($term->name); ?></h1>
+            <div class="term-description" style="margin-bottom: 1.5rem;"><?php echo esc_html($term->description); ?></div>
             <?php
             $args = array(
                 'post_type' => 'post',
@@ -47,7 +50,7 @@ add_action('wp_enqueue_scripts', 'enqueue_custom_styles_and_scripts');
             ?>
                 <article id="post-<?php the_ID(); ?>" <?php post_class('ui segment'); ?> style="margin-bottom: 2rem;">
                     <header class="entry-header">
-                        <h2 class="ui header" style="font-size: 2rem;"><a href="<?php the_permalink(); ?>" ><?php the_title(); ?></a></h2>
+                        <h2 class="ui header" style="font-size: 2rem;"><a href="<?php echo esc_url(get_permalink()); ?>" ><?php the_title(); ?></a></h2>
                     </header>
                     <div class="entry-content">
                         <?php the_excerpt(); ?>
@@ -80,7 +83,7 @@ add_action('wp_enqueue_scripts', 'enqueue_custom_styles_and_scripts');
             ?>
                 <article id="post-<?php the_ID(); ?>" <?php post_class('ui segment'); ?> style="margin-bottom: 2rem;">
                     <header class="entry-header">
-                        <h2 class="ui header" style="font-size: 2rem;"><a href="<?php the_permalink(); ?>" ><?php the_title(); ?></a></h2>
+                        <h2 class="ui header" style="font-size: 2rem;"><a href="<?php echo esc_url(get_permalink()); ?>" ><?php the_title(); ?></a></h2>
                     </header>
                     <div class="entry-content">
                         <?php the_excerpt(); ?>
