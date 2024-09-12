@@ -29,7 +29,7 @@
                     ?>
                 </div>
 
-                <footer class="entry-footer ui divider" style="margin-top: 3em;">
+                <footer class="entry-footer ui divider" style="margin-top: 3em; height: auto;" ;">
                     <div class="ui horizontal list">
                         <div class="item">
                             <i class="folder open outline icon"></i>
