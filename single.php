@@ -23,7 +23,7 @@
                     the_content();
                     
                     wp_link_pages(array(
-                        'before' => '<div class="page-links">' . __('Pages:', 'mytheme'),
+                        'before' => '<div class="page-links">' . __('Pages:', 'minimalflow'),
                         'after'  => '</div>',
                     ));
                     ?>
