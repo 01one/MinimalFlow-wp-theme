@@ -1,7 +1,7 @@
 === MinimalFlow ===
 Contributors: Mashiur Rahman
 Tags: responsive, custom-background, custom-logo, custom-menu, editor-style, featured-images, flexible-width, theme-options, blogging, poetry, art, lightweight, Semantic UI
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
